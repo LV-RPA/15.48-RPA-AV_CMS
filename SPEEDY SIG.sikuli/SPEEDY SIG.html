@@ -1,0 +1,310 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>SPEEDY SIG.sikuli</h2> <a href="SPEEDY SIG.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+link_speedy = <span class="str">"http://10.226.5.211/"</span>
+user_speedy = <span class="str">"jsalazarq"</span>
+pass_speedy = <span class="str">"anovo20#"</span>
+link_inguz = <span class="str">"http://www.anovo.pe/inguz"</span>
+link_carga = <span class="str">"http://www.anovo.pe/inguz/formRutinas/frmCargarOrdenes.aspx"</span>
+user_inguz = <span class="str">"74590179"</span>
+pass_inguz = <span class="str">"jarvis"</span>
+speedySIG = <span class="str">r'\\10.120.15.48\CargaInguz\SpeedySIG'</span>
+delete_files = <span class="str">r'C:\CargaInguz\SpeedySig\*'</span>
+
+<span class="kw">print</span>(<span class="str">"cerrar procesos"</span>)
+os.system(<span class="str">'taskkill /f /im cms.exe'</span>)
+os.system(<span class="str">'taskkill /f /im te_envot.exe'</span>)
+os.system(<span class="str">'taskkill /f /im te_banpai.exe'</span>)
+os.system(<span class="str">'taskkill /f /im te_manot.exe'</span>)
+os.system(<span class="str">'taskkill /f /im firefox.exe'</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"Eliminar Archivos"</span>)
+dfiles1 = glob.glob(delete_files)
+<span class="kw">for</span> f <span class="kw">in</span> dfiles1:
+    os.remove(f)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="cmt">#*************************CARGA SPEEDY SIG***************************#</span>
+<span class="kw">print</span>(<span class="str">"Abrir Firefox"</span>)
+App.open(<span class="str">"C:\\Program Files\\Mozilla Firefox\\firefox.exe"</span>)
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+
+<span class="kw">print</span>(<span class="str">"Pagina encontrada"</span>)
+<span class="kw">def</span> ingresar_link():
+    <span class="skw">type</span>(<span class="str">"l"</span>,KEY_CTRL)
+    <span class="skw">sleep</span>(<span class="dig">2</span>)
+    paste(link_speedy)
+    <span class="skw">sleep</span>(<span class="dig">2</span>)
+    <span class="skw">type</span>(Key.ENTER)
+    <span class="skw">sleep</span>(<span class="dig">5</span>)
+
+ingresar_link()
+ingresar_link()
+
+<span class="kw">print</span>(<span class="str">"Ingresamos login"</span>)
+paste(user_speedy)
+<span class="skw">type</span>(Key.TAB)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.TAB)
+paste(pass_speedy)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">wait</span>(Pattern(<img src="1558730912222-1.png" />).similar(<span class="dig">0.80</span>),<span class="dig">60</span>)
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+
+<span class="kw">print</span>(<span class="str">"Buscamos la ruta"</span>)
+<span class="skw">click</span>(Pattern(<img src="1558731800415-1.png" />).targetOffset(<span class="dig">49</span>,<span class="dig">1</span>))
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1558731886599-1.png" />).targetOffset(<span class="dig">114</span>,<span class="dig">1</span>))
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1558731962864-1.png" />).targetOffset(<span class="dig">104</span>,<span class="dig">0</span>))
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">click</span>(Pattern(<img src="1558810266863-1.png" />).targetOffset(<span class="dig">93</span>,<span class="dig">1</span>))
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1558732384106-1.png" />).targetOffset(-<span class="dig">28</span>,<span class="dig">2</span>))
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.TAB*<span class="dig">3</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.DOWN)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.TAB)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.DOWN)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1558810597766-1.png" />).targetOffset(<span class="dig">40</span>,<span class="dig">1</span>))
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1558810648644-1.png" />).targetOffset(-<span class="dig">25</span>,<span class="dig">17</span>))
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.TAB)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.DOWN)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"Escogemos las fechas"</span>)
+<span class="skw">click</span>(Pattern(<img src="1558811331589-1.png" />).targetOffset(<span class="dig">65</span>,-<span class="dig">3</span>))
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">wait</span>(Pattern(Pattern(<img src="1558811536469-1.png" />).targetOffset(-<span class="dig">83</span>,<span class="dig">2</span>)).similar(<span class="dig">0.8</span>),<span class="dig">3600</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1558811536469-1.png" />).targetOffset(-<span class="dig">81</span>,<span class="dig">0</span>))
+<span class="skw">type</span>(Key.TAB)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">click</span>(Pattern(<img src="1558811666494-1.png" />).targetOffset(<span class="dig">61</span>,-<span class="dig">3</span>))
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">wait</span>(Pattern(Pattern(<img src="1558811807322-1.png" />).targetOffset(-<span class="dig">79</span>,<span class="dig">2</span>)).similar(<span class="dig">0.8</span>),<span class="dig">3600</span>)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">click</span>(Pattern(<img src="1558811774668-1.png" />).targetOffset(<span class="dig">13</span>,-<span class="dig">8</span>))
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">click</span>(Pattern(<img src="1558811807322-1.png" />).targetOffset(-<span class="dig">79</span>,<span class="dig">2</span>))
+<span class="skw">type</span>(Key.TAB)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">click</span>(Pattern(<img src="1558811868860-1.png" />).targetOffset(-<span class="dig">4</span>,-<span class="dig">1</span>))
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+
+<span class="kw">print</span>(<span class="str">"Descargar Reporte"</span>)
+<span class="skw">click</span>(Pattern(<img src="1558811912028-2.png" />).targetOffset(-<span class="dig">5</span>,<span class="dig">0</span>))
+<span class="skw">wait</span>(Pattern(<img src="1576507409167.png" />).similar(<span class="dig">0.80</span>),<span class="dig">3600</span>)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(<span class="str">"l"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+paste(speedySIG)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">4</span>)
+paste(Pattern(<img src="1576507573175.png" />).targetOffset(<span class="dig">28</span>,<span class="dig">0</span>), <span class="str">"speedysig"</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+
+<span class="kw">print</span>(<span class="str">"abrir excel speedysyg"</span>)
+<span class="skw">type</span>(<span class="str">"r"</span>,KeyModifier.WIN)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+paste(<span class="str">"excel"</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">10</span>)
+<span class="skw">type</span>(<span class="str">"q"</span>,KEY_ALT)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(<span class="str">"o"</span>,KEY_ALT)
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+<span class="skw">type</span>(<span class="str">"l"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+paste(speedySIG)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+<span class="skw">click</span>(Pattern(<img src="1576507945804.png" />).targetOffset(-<span class="dig">24</span>,<span class="dig">1</span>))
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">10</span>)
+
+<span class="kw">print</span>(<span class="str">"Eliminar columnas"</span>)
+<span class="skw">type</span>(Key.LEFT)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+<span class="skw">click</span>(Pattern(<img src="1558998895550-2.png" />).targetOffset(<span class="dig">0</span>,-<span class="dig">9</span>))
+<span class="skw">click</span>(Pattern(<img src="1558998973798-2.png" />).targetOffset(<span class="dig">7</span>,-<span class="dig">27</span>))
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">click</span>(Pattern(<img src="1558998973798-2.png" />).targetOffset(<span class="dig">7</span>,-<span class="dig">27</span>))
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"Guardamos el archivo"</span>)
+<span class="skw">type</span>(<span class="str">"g"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.RIGHT)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+<span class="skw">type</span>(<span class="str">"v"</span>,KEY_ALT)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(<span class="str">"o"</span>,KEY_ALT)
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+<span class="skw">type</span>(<span class="str">"l"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+paste(speedySIG)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+paste(Pattern(<img src="1558999488674-2.png" />).targetOffset(<span class="dig">57</span>,<span class="dig">3</span>), <span class="str">"speedysig"</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.TAB)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.DOWN)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.UP*<span class="dig">4</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+<span class="skw">type</span>(Key.LEFT)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">click</span>(Pattern(<img src="1558999697604-1.png" />).targetOffset(<span class="dig">44</span>,<span class="dig">0</span>))
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+
+<span class="kw">print</span>(<span class="str">"abrir el inguz"</span>)
+<span class="skw">type</span>(<span class="str">"t"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"l"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+paste(link_inguz)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+
+<span class="kw">print</span>(<span class="str">"iniciar sesion"</span>)
+paste(user_inguz)
+<span class="skw">type</span>(Key.TAB)
+paste(pass_inguz)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+<span class="skw">type</span>(<span class="str">"l"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+paste(link_carga)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+<span class="skw">click</span>(Pattern(<img src="1559077079121-1.png" />).targetOffset(<span class="dig">23</span>,<span class="dig">0</span>))
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">click</span>(Pattern(<img src="1573749459036.png" />).targetOffset(-<span class="dig">14</span>,<span class="dig">55</span>))
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+
+<span class="kw">print</span>(<span class="str">"buscar el archivo"</span>)
+<span class="skw">type</span>(<span class="str">"l"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+paste(speedySIG)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1559084566786-1.png" />).targetOffset(-<span class="dig">44</span>,<span class="dig">0</span>))
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1573749543768.png" />).targetOffset(<span class="dig">340</span>,<span class="dig">55</span>))
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">wait</span>(Pattern(<img src="1560615777602.png" />).similar(<span class="dig">0.80</span>),<span class="dig">240</span>)
+
+<span class="kw">print</span>(<span class="str">"fin de la carga"</span>)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(<span class="str">"w"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+</pre>
+</body>
+</html>

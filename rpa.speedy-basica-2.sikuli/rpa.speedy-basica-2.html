@@ -1,0 +1,579 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>rpa.speedy-basica-2.sikuli</h2> <a href="rpa.speedy-basica-2.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">import</span> datetime
+<span class="kw">import</span> os
+<span class="kw">import</span> glob
+<span class="kw">import</span> shutil
+
+desde = datetime.datetime.now() + datetime.timedelta(days=-<span class="dig">3</span>)
+hasta = datetime.datetime.now()
+ftpip = <span class="str">"10.4.3.220"</span>
+user_gestel = <span class="str">"ot_jhca0"</span>
+pass_gestel = <span class="str">"JC0220"</span>
+ftpruta = <span class="str">"/home/geslis/ot_jhca0"</span>
+link_inguz = <span class="str">"http://www.anovo.pe/inguz"</span>
+link_carga = <span class="str">"http://www.anovo.pe/inguz/formRutinas/frmCargarOrdenes.aspx"</span>
+user_inguz = <span class="str">"74590179"</span>
+pass_inguz = <span class="str">"jarvis"</span>
+basica = (<span class="str">r'\\10.120.15.48\CargaInguz\Basica'</span>)
+speedy = (<span class="str">r'\\10.120.15.48\CargaInguz\Speedy'</span>)
+delete_basica = (<span class="str">r'C:\CargaInguz\Basica\*'</span>)
+delete_speedy = (<span class="str">r'C:\CargaInguz\Speedy\*'</span>)
+<span class="kw">print</span>(desde)
+<span class="kw">print</span>(hasta)
+
+<span class="kw">print</span>(<span class="str">"cerrar procesos"</span>)
+os.system(<span class="str">'taskkill /f /im cms.exe'</span>)
+os.system(<span class="str">'taskkill /f /im te_envot.exe'</span>)
+os.system(<span class="str">'taskkill /f /im te_banpai.exe'</span>)
+os.system(<span class="str">'taskkill /f /im te_manot.exe'</span>)
+os.system(<span class="str">'taskkill /f /im firefox.exe'</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"Eliminar Archivos"</span>)
+dfiles1 = glob.glob(delete_basica)
+<span class="kw">for</span> f <span class="kw">in</span> dfiles1:
+    os.remove(f)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+dfiles2 = glob.glob(delete_speedy)
+<span class="kw">for</span> f <span class="kw">in</span> dfiles2:
+    os.remove(f)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"abrir gestel"</span>)
+App.open(<span class="str">"C:\\Anzio126\\anzio32.exe"</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">wait</span>(<img src="1581453480121.png" />,<span class="dig">60</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"iniciar sesion"</span>)
+<span class="skw">type</span>(user_gestel)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(pass_gestel)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">20</span>)
+<span class="skw">type</span>(<span class="str">"n"</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(<span class="str">"s"</span>)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="kw">print</span>(<span class="str">"fin ingreso gestel"</span>)
+
+<span class="cmt">#//-----------------------------SPEEDY-----------------------</span>
+<span class="kw">print</span>(<span class="str">"buscar la ruta"</span>)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.F6)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"5C81"</span>)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(<span class="str">"1"</span>)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(<span class="str">"lim"</span>)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(<span class="str">"00990"</span>)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(<span class="str">"t"</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"t"</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"c"</span>)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">60</span>)
+
+<span class="kw">print</span>(<span class="str">"esperar reporte"</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(<span class="str">"q"</span>)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+
+<span class="kw">print</span>(<span class="str">"salir"</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.DELETE)
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+
+<span class="cmt">#//-----------------------------BASICA----------------//#</span>
+<span class="kw">print</span>(<span class="str">"BASICA"</span>)
+<span class="skw">type</span>(<span class="str">"592"</span>)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(Key.RIGHT*<span class="dig">3</span>)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.DOWN*<span class="dig">7</span>)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(<span class="str">"n"</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.DOWN*<span class="dig">9</span>)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"n"</span>)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+
+<span class="kw">print</span>(<span class="str">"filtrar fechas"</span>)
+<span class="cmt">#type(Key.ENTER)</span>
+<span class="skw">type</span>(desde.strftime(<span class="str">"%d-%m-%Y"</span>))
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(Key.DOWN)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+
+<span class="kw">print</span>(<span class="str">"esperar reporte basica"</span>)
+<span class="skw">wait</span>(<img src="1566415528183-1.png" />,<span class="dig">1800</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.F10)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"d"</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"q"</span>)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+
+<span class="kw">print</span>(<span class="str">"salir gestel"</span>)
+<span class="skw">type</span>(Key.DELETE)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"x"</span>,KEY_ALT)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+
+<span class="cmt">#//--------------------FILEZILLA-------------------</span>
+<span class="kw">print</span>(<span class="str">"abrir filezilla"</span>)
+<span class="skw">type</span>(<span class="str">"r"</span>,KeyModifier.WIN)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+paste(<span class="str">r'C:\Program Files\FileZilla FTP Client\filezilla.exe'</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">wait</span>(Pattern(<img src="1560792641291-1.png" />).similar(<span class="dig">0.80</span>),<span class="dig">3600</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"ingresar valores ftp"</span>)
+paste(Pattern(<img src="1561489928485-1.png" />).targetOffset(<span class="dig">28</span>,<span class="dig">23</span>), ftpip)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+paste(Pattern(<img src="1561489962275-1.png" />).targetOffset(<span class="dig">57</span>,<span class="dig">1</span>), user_gestel)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+paste(Pattern(<img src="1561489995114-1.png" />).targetOffset(<span class="dig">36</span>,<span class="dig">1</span>), pass_gestel)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"esperar conexcion exitosa"</span>)
+<span class="skw">wait</span>(<img src="1561490814279-1.png" />)
+paste(Pattern(<img src="1561490869608-1.png" />).targetOffset(<span class="dig">52</span>,<span class="dig">2</span>) ,ftpruta)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">wait</span>(Pattern(<img src="1561495055723-2.png" />).similar(<span class="dig">0.80</span>),<span class="dig">120</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"ABRIR BASICA"</span>)
+<span class="skw">rightClick</span>(Pattern(<img src="1561495124206-2.png" />).similar(<span class="dig">0.90</span>).targetOffset(<span class="dig">1</span>,<span class="dig">1</span>))
+<span class="skw">click</span>(Pattern(<img src="1561495155754-2.png" />).targetOffset(-<span class="dig">4</span>,<span class="dig">0</span>))
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">wait</span>(Pattern(<img src="1561495460299-2.png" />).similar(<span class="dig">0.80</span>),<span class="dig">120</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"guardar el archivo BASICA"</span>)
+<span class="skw">click</span>(Pattern(<img src="1562170645601-2.png" />).targetOffset(-<span class="dig">99</span>,-<span class="dig">10</span>))
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">click</span>(Pattern(<img src="1562170689397-2.png" />).targetOffset(-<span class="dig">15</span>,<span class="dig">45</span>))
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">wait</span>(Pattern(<img src="1561504827141-2.png" />).similar(<span class="dig">0.80</span>),<span class="dig">120</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+paste(<span class="str">"basica"</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"l"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+paste(basica)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+
+<span class="kw">print</span>(<span class="str">"Guardar"</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1561506442009-2.png" />).targetOffset(<span class="dig">0</span>,<span class="dig">3</span>))
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1561506544814-3.png" />).targetOffset(<span class="dig">41</span>,<span class="dig">1</span>))
+
+<span class="kw">if</span> exists (<img src="1575399822535-2.png" />,<span class="dig">15</span>):
+    <span class="skw">sleep</span>(<span class="dig">2</span>)
+    <span class="skw">click</span>(Pattern(<img src="1575399822535-2.png" />).targetOffset(<span class="dig">125</span>,<span class="dig">1</span>))
+    <span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"abrir en excel"</span>)
+<span class="skw">type</span>(<span class="str">"r"</span>,KeyModifier.WIN)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+paste(<span class="str">"excel"</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">wait</span>(Pattern(<img src="1562171175271-2.png" />).similar(<span class="dig">0.80</span>),<span class="dig">120</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"abrir el archivo basica"</span>)
+<span class="skw">type</span>(<span class="str">"q"</span>,KEY_ALT)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(<span class="str">"o"</span>,KEY_ALT)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">wait</span>(Pattern(<img src="1562185548317-2.png" />).similar(<span class="dig">0.80</span>),<span class="dig">120</span>)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(<span class="str">"l"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+paste(basica)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">click</span>(Pattern(<img src="1562184036061-2.png" />).targetOffset(<span class="dig">85</span>,<span class="dig">2</span>))
+<span class="skw">click</span>(Pattern(<img src="1562184171093-2.png" />).targetOffset(-<span class="dig">24</span>,<span class="dig">13</span>))
+<span class="skw">click</span>(Pattern(<img src="1562184198457-2.png" />).targetOffset(-<span class="dig">25</span>,<span class="dig">15</span>))
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"abrir basica "</span>)
+<span class="skw">wait</span>(Pattern(<img src="1562184472917-1.png" />).similar(<span class="dig">0.80</span>),<span class="dig">120</span>)
+<span class="skw">click</span>(Pattern(<img src="1562185610688-1.png" />).targetOffset(-<span class="dig">1</span>,<span class="dig">2</span>))
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">wait</span>(Pattern(<img src="1562185659779-1.png" />).similar(<span class="dig">0.80</span>),<span class="dig">120</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1562185756215-2.png" />).targetOffset(-<span class="dig">41</span>,<span class="dig">11</span>))
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">def</span> eliminar():
+    <span class="skw">click</span>(Pattern(<img src="1562185712184-2.png" />).targetOffset(<span class="dig">8</span>,-<span class="dig">10</span>))
+    <span class="skw">sleep</span>(<span class="dig">1</span>)
+
+eliminar()
+eliminar()
+eliminar()
+eliminar()
+eliminar()
+
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1562187271911-2.png" />).targetOffset(<span class="dig">0</span>,<span class="dig">13</span>))
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+eliminar()
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"Guardar Archivo"</span>)
+<span class="skw">type</span>(<span class="str">"a"</span>,KEY_ALT)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"v"</span>,KEY_ALT)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"o"</span>,KEY_ALT)
+<span class="skw">wait</span>(Pattern(<img src="1562187507700-2.png" />).similar(<span class="dig">0.80</span>),<span class="dig">120</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"basica"</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.TAB)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.DOWN)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.UP*<span class="dig">8</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(<span class="str">"l"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+paste(basica)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1562187840588-3.png" />).targetOffset(-<span class="dig">1</span>,<span class="dig">1</span>))
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+<span class="skw">click</span>(Pattern(<img src="1566418579850-1.png" />).targetOffset(<span class="dig">47</span>,<span class="dig">1</span>))
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+
+<span class="kw">if</span> exists (<img src="1575399822535-2.png" />,<span class="dig">15</span>):
+    <span class="skw">sleep</span>(<span class="dig">2</span>)
+    <span class="skw">click</span>(Pattern(<img src="1575399822535-2.png" />).targetOffset(<span class="dig">125</span>,<span class="dig">1</span>))
+    <span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"ABRIR SPEEDY"</span>)
+<span class="skw">rightClick</span>(Pattern(<img src="1566418891877-1.png" />).similar(<span class="dig">0.80</span>).targetOffset(<span class="dig">0</span>,<span class="dig">1</span>))
+<span class="skw">click</span>(Pattern(<img src="1561495155754-2.png" />).targetOffset(-<span class="dig">4</span>,<span class="dig">0</span>))
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">wait</span>(Pattern(<img src="1561495460299-2.png" />).similar(<span class="dig">0.80</span>),<span class="dig">120</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"guardar el archivo BASICA"</span>)
+<span class="skw">click</span>(Pattern(<img src="1566420551366-1.png" />).targetOffset(-<span class="dig">97</span>,-<span class="dig">9</span>))
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">click</span>(Pattern(<img src="1562170689397-2.png" />).targetOffset(-<span class="dig">15</span>,<span class="dig">45</span>))
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">wait</span>(Pattern(<img src="1561504827141-2.png" />).similar(<span class="dig">0.80</span>),<span class="dig">120</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+paste(<span class="str">"speedy"</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"l"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+paste(speedy)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+
+<span class="kw">print</span>(<span class="str">"Guardar"</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1561506442009-2.png" />).targetOffset(<span class="dig">0</span>,<span class="dig">3</span>))
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1561506544814-3.png" />).targetOffset(<span class="dig">41</span>,<span class="dig">1</span>))
+
+<span class="kw">if</span> exists (<img src="1575398954726-1.png" />,<span class="dig">15</span>):
+    <span class="skw">sleep</span>(<span class="dig">2</span>)
+    <span class="skw">click</span>(Pattern(<img src="1575398954726-1.png" />).targetOffset(<span class="dig">140</span>,<span class="dig">0</span>))
+    <span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"abrir en excel"</span>)
+<span class="skw">type</span>(<span class="str">"r"</span>,KeyModifier.WIN)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+paste(<span class="str">"excel"</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">wait</span>(Pattern(<img src="1562171175271-2.png" />).similar(<span class="dig">0.80</span>),<span class="dig">120</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"abrir el archivo basica"</span>)
+<span class="skw">type</span>(<span class="str">"q"</span>,KEY_ALT)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(<span class="str">"o"</span>,KEY_ALT)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">wait</span>(Pattern(<img src="1562185548317-2.png" />).similar(<span class="dig">0.80</span>),<span class="dig">120</span>)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(<span class="str">"l"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+paste(speedy)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">click</span>(Pattern(<img src="1562184036061-2.png" />).targetOffset(<span class="dig">85</span>,<span class="dig">2</span>))
+<span class="skw">click</span>(Pattern(<img src="1562184171093-2.png" />).targetOffset(-<span class="dig">24</span>,<span class="dig">13</span>))
+<span class="skw">click</span>(Pattern(<img src="1566420715962-1.png" />).targetOffset(-<span class="dig">23</span>,<span class="dig">15</span>))
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"abrir basica "</span>)
+<span class="skw">wait</span>(Pattern(<img src="1562184472917-1.png" />).similar(<span class="dig">0.80</span>),<span class="dig">120</span>)
+<span class="skw">click</span>(Pattern(<img src="1566421265819-1.png" />).targetOffset(-<span class="dig">36</span>,-<span class="dig">10</span>))
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"s"</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"o"</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+paste(<span class="str">r'|'</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">wait</span>(Pattern(<img src="1566421961209-1.png" />).targetOffset(<span class="dig">4</span>,-<span class="dig">1</span>),<span class="dig">120</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"Guardar Archivo"</span>)
+<span class="skw">type</span>(<span class="str">"a"</span>,KEY_ALT)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"v"</span>,KEY_ALT)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"o"</span>,KEY_ALT)
+<span class="skw">wait</span>(Pattern(<img src="1562187507700-2.png" />).similar(<span class="dig">0.80</span>),<span class="dig">120</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"speedy"</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.TAB)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.DOWN)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.UP*<span class="dig">8</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(<span class="str">"l"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+paste(speedy)
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1562187840588-3.png" />).targetOffset(-<span class="dig">1</span>,<span class="dig">1</span>))
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+<span class="skw">click</span>(Pattern(<img src="1566418579850-1.png" />).targetOffset(<span class="dig">47</span>,<span class="dig">1</span>))
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+
+<span class="kw">if</span> exists (<img src="1575398954726-1.png" />,<span class="dig">15</span>):
+    <span class="skw">sleep</span>(<span class="dig">2</span>)
+    <span class="skw">click</span>(Pattern(<img src="1575398954726-1.png" />).targetOffset(<span class="dig">140</span>,<span class="dig">0</span>))
+    <span class="skw">sleep</span>(<span class="dig">2</span>)
+
+<span class="kw">print</span>(<span class="str">"cerrar FileZilla"</span>)
+<span class="skw">click</span>(Pattern(<img src="1566422786894-1.png" />).targetOffset(<span class="dig">71</span>,-<span class="dig">8</span>))
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(<span class="str">"q"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+
+
+<span class="cmt">#//--------------------FIREFOX-------------------//#</span>
+<span class="kw">print</span>(<span class="str">"abrir firefox"</span>)
+App.open(<span class="str">"C:\\Program Files\\Mozilla Firefox\\firefox.exe"</span>)
+<span class="skw">sleep</span>(<span class="dig">15</span>)
+
+<span class="kw">print</span>(<span class="str">"iniciar sesion"</span>)
+paste(Pattern(<img src="1566427253659-1.png" />).targetOffset(-<span class="dig">224</span>,<span class="dig">25</span>), user_inguz)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.TAB)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+paste(pass_inguz)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">wait</span>(<img src="1571938509436.png" />,<span class="dig">60</span>)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(<span class="str">"l"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+paste(link_carga)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">10</span>)
+<span class="skw">click</span>(Pattern(<img src="1566427365594-1.png" />).similar(<span class="dig">0.80</span>).targetOffset(<span class="dig">11</span>,-<span class="dig">24</span>))
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(Key.DOWN*<span class="dig">11</span>)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">click</span>(Pattern(<img src="1571416218113-3.png" />).similar(<span class="dig">0.80</span>).targetOffset(-<span class="dig">159</span>,<span class="dig">18</span>))
+<span class="skw">sleep</span>(<span class="dig">5</span>)
+
+<span class="kw">print</span>(<span class="str">"buscar el archivo"</span>)
+<span class="skw">type</span>(<span class="str">"l"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+paste(speedy)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1569338885840-2.png" />).similar(<span class="dig">0.90</span>).targetOffset(-<span class="dig">21</span>,<span class="dig">0</span>))
+<span class="skw">sleep</span>(<span class="dig">1</span>)
+<span class="skw">type</span>(Key.ENTER)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">click</span>(Pattern(<img src="1571416291001-3.png" />).similar(<span class="dig">0.80</span>).targetOffset(<span class="dig">322</span>,<span class="dig">52</span>))
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">wait</span>(Pattern(<img src="1560615777602-1.png" />).similar(<span class="dig">0.80</span>),<span class="dig">600</span>)
+
+<span class="kw">print</span>(<span class="str">"fin de la carga"</span>)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+<span class="skw">type</span>(<span class="str">"w"</span>,KEY_CTRL)
+<span class="skw">sleep</span>(<span class="dig">3</span>)
+
+files1 = glob.glob(<span class="str">'C:\\CargaInguz\\Basica\\*'</span>)
+<span class="kw">for</span> f <span class="kw">in</span> files1:
+    shutil.copy(f,<span class="str">'\\\\10.10.1.250\\Desarrollo\\CargaInguz_Gestel\\'</span>)
+
+files2 = glob.glob(<span class="str">'C:\\CargaInguz\Speedy\\*'</span>)
+<span class="kw">for</span> fi <span class="kw">in</span> files2:
+    shutil.copy(fi,<span class="str">'\\\\10.10.1.250\\Desarrollo\\CargaInguz_Gestel\\'</span>)
+</pre>
+</body>
+</html>
